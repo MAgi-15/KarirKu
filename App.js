@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import Entypo from 'react-native-vector-icons/Entypo'
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -66,6 +67,7 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Entypo name='beamed-note' size={30}></Entypo>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -105,7 +107,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   highlight: {
-    fontWeight: '700',
+    // fontWeight: '700',
+    fontFamily:'Montserrat-Bold'
   },
 });
 
