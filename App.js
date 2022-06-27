@@ -10,6 +10,7 @@ import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo'
 import type {Node} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -26,6 +27,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { localNotificationService } from './src/components/LocalNotificationService';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,6 +62,8 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const notifications = localNotificationService.createDefaultChannels()
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -68,6 +72,11 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <Header />
         <Entypo name='beamed-note' size={30}></Entypo>
+        <Button title='TEST' onPress={()=>{
+          localNotificationService.showNotification(
+            '1','test','message',{}, {}
+          )
+        }}></Button>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -78,7 +87,7 @@ const App: () => Node = () => {
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
-          </Section>
+          </Section> 
           <Section title="Debug">
             <DebugInstructions />
           </Section>

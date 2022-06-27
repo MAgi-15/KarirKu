@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "527902017145",
+    "project_id": "karirku-4e549",
+    "storage_bucket": "karirku-4e549.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527902017145:android:e15a971e4cbed537f976a8",
+        "android_client_info": {
+          "package_name": "com.karirku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527902017145-oij9kd2bmmkpako7t2i5i0vf4vcdkpnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4dhYVzhfDm0gVJuSFUaJ6GwErN7XDXtg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527902017145-oij9kd2bmmkpako7t2i5i0vf4vcdkpnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
