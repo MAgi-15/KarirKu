@@ -1,9 +1,6 @@
 import { Text, View, Image, StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import AntDesign from 'react-native-vector-icons/AntDesign'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class CommentScreen extends Component {
