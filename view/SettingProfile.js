@@ -4,37 +4,35 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import Entypo from 'react-native-vector-icons/Entypo'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class SettingProfile extends Component {
   render() {
     return (
       <View style={{  }}>
-        <Header></Header>
+        <Header navigation={this.props.navigation}></Header>
         <PhotoProfile></PhotoProfile>
-        <Menu></Menu>
-        <MenuLogout></MenuLogout>
+        <Menu navigation={this.props.navigation}></Menu>
+        <MenuLogout navigation={this.props.navigation}></MenuLogout>
       </View>
     )
   }
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:20, marginBottom:10, flexDirection:'row', alignItems:'center', paddingVertical:10, elevation:5 }}>
-        <BaseButton style={{ justifyContent:'flex-start', width:30 }} onPress={()=>{navigation.navigate('SplashScreen')}}>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:20, PaddingBottom:10, marginBottom:5, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:15 }} onPress={()=>{navigation.navigate('Profile')}}>
             <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:20, color:'black' }}>Setting</Text>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:20, color:'black', paddingBottom:15 }}>Setting</Text>
         </View>
         <View style={{ width:30 }}></View>
     </View>
 )
 
-const PhotoProfile = ({navigation})=> (
-    <View style={{ backgroundColor:'white', padding:20, paddingTop:40, marginBottom: 10, elevation:1 }}>
+const PhotoProfile = ()=> (
+    <View style={{ backgroundColor:'white', padding:20, paddingTop:40, marginBottom: 5, elevation:1 }}>
         <View style={{ paddingHorizontal:0 }}>
             {/* <View style={{ borderBottomWidth:1, borderColor:'#A5A5A5', marginBottom:10 }}></View> */}
             <View style={{ alignItems:'center', justifyContent:'center' }}>
@@ -46,9 +44,9 @@ const PhotoProfile = ({navigation})=> (
     </View>
 )
 
-const Menu = ()=> (
+const Menu = ({navigation})=> (
     <View style={{ backgroundColor:'white', marginBottom:30, elevation:1, paddingVertical:40 }}>
-        <View style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between', marginBottom:10 }}>
+        <BaseButton onPress={()=>{navigation.navigate('EditProfile')}} style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between', marginBottom:10 }}>
             <View style={{ flexDirection:'row', alignItems:'center' }}>
                 <View style={{ backgroundColor:'#D9D9D9', padding:10, borderRadius:10, width:50, height:50, alignItems:'center', marginRight:20 }}>
                     <Ionicons name='settings' size={30} color={'black'} ></Ionicons>
@@ -56,9 +54,9 @@ const Menu = ()=> (
                 <Text style={{ fontFamily:'Inter-SemiBold', fontSize:14, color:'black' }}>Edit Profile</Text>
             </View>
             <MaterialIcons name='arrow-forward-ios' size={25} color={'black'} ></MaterialIcons>
-        </View>
+        </BaseButton>
         <View style={{ borderBottomWidth:1, borderColor:'#D9D9D9', marginBottom:10 }}></View>
-        <View style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between' }}>
+        <BaseButton onPress={()=>{navigation.navigate('Details')}} style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between' }}>
             <View style={{ flexDirection:'row', alignItems:'center' }}>
                 <View style={{ backgroundColor:'#D9D9D9', padding:10, borderRadius:10, width:50, height:50, alignItems:'center', marginRight:20 }}>
                     <MaterialCommunityIcons name='card-account-details' size={30} color={'black'} ></MaterialCommunityIcons>
@@ -66,13 +64,13 @@ const Menu = ()=> (
                 <Text style={{ fontFamily:'Inter-SemiBold', fontSize:14, color:'black' }}>Details</Text>
             </View>
             <MaterialIcons name='arrow-forward-ios' size={25} color={'black'} ></MaterialIcons>
-        </View>
+        </BaseButton>
     </View>
 )
 
-const MenuLogout = ()=> (
+const MenuLogout = ({navigation})=> (
     <View style={{ backgroundColor:'#FFF', paddingVertical:20, height:190, elevation:1 }}>
-        <View style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between' }}>
+        <BaseButton onPress={()=>{navigation.navigate('Login')}} style={{ backgroundColor:'#F2F2F2', marginHorizontal:20, paddingVertical:10, paddingHorizontal:20, borderRadius:10, flexDirection:'row', alignItems:'center', justifyContent: 'space-between' }}>
             <View style={{ flexDirection:'row', alignItems:'center' }}>
                 <View style={{ backgroundColor:'#D9D9D9', padding:10, borderRadius:10, width:50, height:50, alignItems:'center', marginRight:20 }}>
                     <FontAwesome name='sign-out' size={30} color={'black'} ></FontAwesome>
@@ -80,7 +78,7 @@ const MenuLogout = ()=> (
                 <Text style={{ fontFamily:'Inter-SemiBold', fontSize:14, color:'black' }}>Log Out</Text>
             </View>
             <MaterialIcons name='arrow-forward-ios' size={25} color={'black'} ></MaterialIcons>
-        </View>
+        </BaseButton>
     </View>
 )
 

@@ -20,7 +20,7 @@ export class Register extends Component {
 const Header = ({navigation})=> (
     <View style={{ paddingHorizontal:20, paddingTop:20, marginBottom:50, flexDirection:'row', alignItems:'center',  paddingVertical:10 }}>
         <BaseButton style={{ justifyContent:'flex-start', width:30 }} onPress={()=>{navigation.navigate('SplashScreen')}}>
-            <Ionicons name='arrow-back' size={30} ></Ionicons>
+            <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
             <Text style={{ fontFamily:'PlayfairDisplay-Regular', fontSize:30, color:'black' }}>KarirKu</Text>

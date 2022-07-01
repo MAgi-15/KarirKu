@@ -3,15 +3,18 @@ import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Feather from 'react-native-vector-icons/Feather'
+import Foundation from 'react-native-vector-icons/Foundation'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class Home extends Component {
   render() {
     return (
-      <View style={style.Header}>
+      <View style={{ backgroundColor:'#FFF', flex:1 }}>
         <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header navigation={this.props.navigation}></Header>
-        <ScrollView>
+        <ScrollView >
           <TextHome></TextHome>
           <Postingan navigation={this.props.navigation}></Postingan>
           <Postingan navigation={this.props.navigation}></Postingan>
@@ -30,10 +33,10 @@ export class Home extends Component {
 }
 
 const Header = ({navigation})=> (
-  <View style={{ backgroundColor:'white', padding:10, marginBottom:1, elevation:3 }}>
-    <View style={{ flexDirection:'row', alignItems:'center', marginVertical:10 }}>
+  <View style={{ backgroundColor:'white', padding:10,elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
+    <View style={{ flexDirection:'row', alignItems:'center', marginVertical:3 }}>
       <BaseButton style={{ paddingRight:10 }} onPress={()=>{navigation.navigate('Notifikasi')}}>
-        <Ionicons name='notifications' size={30}></Ionicons>
+        <Ionicons name='notifications-sharp' size={30}></Ionicons>
       </BaseButton>
       <View style={{ borderWidth:2, borderColor:'#F3F3F3', borderRadius:32, paddingRight:20, paddingLeft:10 }}>
         <View style={{ flexDirection:'row' }}>
@@ -58,21 +61,23 @@ const Header = ({navigation})=> (
 )
 
 const Footer = ({navigation})=> (
-    <View style={{backgroundColor:'white', flexDirection:'row', justifyContent:'space-around'}}>
-        <BaseButton style={{alignItems:'center', padding:10}}>
-            <Image source={require('../assets/icons/home.png')} onPress={()=>{navigation.navigate('Home')}}></Image>
-        </BaseButton>
-        <BaseButton style={{ alignItems:'center', padding:10 }}>
-            <Image source={require('../assets/icons/tambah_icon.png')}></Image>
-        </BaseButton>
-        <BaseButton style={{alignItems:'center', padding:10}} onPress={()=>{navigation.navigate('Profile')}}>
-            <Image source={require('../assets/icons/profile_bottom.png')}></Image>
-        </BaseButton>
-    </View>
+  <View style={{ backgroundColor:'#FFF', flexDirection:'row', justifyContent:'space-around', borderTopColor:'#D9D9D9', borderTopWidth:1 }}>
+      <BaseButton style={{alignItems:'center', padding:3, justifyContent:'center'}} onPress={()=>{navigation.navigate('Home')}}>
+          <Foundation name='home' size={32} color={'black'}></Foundation>
+          <Text style={{ color:'black' }}>Home</Text>
+      </BaseButton>
+      <BaseButton style={{ alignItems:'center', padding:3, justifyContent:'center' }} onPress={()=>{navigation.navigate('Upload')}}>
+          <SimpleLineIcons name='plus' size={38} color={'black'}></SimpleLineIcons>
+      </BaseButton>
+      <BaseButton style={{alignItems:'center', padding:3, justifyContent:'center'}} onPress={()=>{navigation.navigate('Profile')}}>
+          <MaterialCommunityIcons name='account-circle-outline' size={32} color={'black'}></MaterialCommunityIcons>
+          <Text style={{ color:'black' }}>Profile</Text>
+      </BaseButton>
+  </View>
 )
 
 const TextHome = ()=> (
-  <View style={{ backgroundColor:'white', padding:15 }}>
+  <View style={{ padding:15 }}>
     <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:28, color:'black' }}>Temukan</Text>
     <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:28, color:'black' }}>Pekerjaan yang</Text>
     <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:28, color:'black' }}>kamu inginkan</Text>
@@ -82,7 +87,7 @@ const TextHome = ()=> (
 )
 
 const Postingan = ({navigation})=> (
-  <View style={{ backgroundColor:'white', paddingHorizontal:20 }}>
+  <View style={{ paddingHorizontal:20 }}>
     <View style={{ backgroundColor:'white', padding:10, marginTop:10, elevation:1, marginBottom:10 }}>
       <View style={{ flexDirection:'row' }}>
         <Image style={{ width:120, height:120, margin:10, marginRight:20 }} source={require('../assets/images/logo_luminor2.png')}></Image>
@@ -112,10 +117,5 @@ const Postingan = ({navigation})=> (
   </View>
 )
 
-const style = StyleSheet.create({
-  Header:{
-    flex:1
-  }
-})
 
 export default Home

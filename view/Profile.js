@@ -6,15 +6,17 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Feather from 'react-native-vector-icons/Feather'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Entypo from 'react-native-vector-icons/Entypo'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class Profile extends Component {
   render() {
     return (
-      <View style={{ backgroundColor:'#FFF' }}>
+      <View style={{ backgroundColor:'#FFF', flex:1 }}>
         <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header navigation={this.props.navigation}></Header>
-        <ScrollView style={{ marginBottom:70 }}>
+        <ScrollView>
           <PhotoProfile navigation={this.props.navigation}></PhotoProfile>
           <Postingan navigation={this.props.navigation}></Postingan>
           <Postingan navigation={this.props.navigation}></Postingan>
@@ -23,13 +25,14 @@ export class Profile extends Component {
           <Postingan navigation={this.props.navigation}></Postingan>
           <Postingan navigation={this.props.navigation}></Postingan>
         </ScrollView>
+        <Footer navigation={this.props.navigation}></Footer>
       </View>
     )
   }
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:30, paddingTop:20, paddingBottom:10, flexDirection:'row', alignItems:'center', justifyContent:'space-between', elevation:4,zIndex:9, marginBottom:20 }}>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:30, paddingVertical:15, flexDirection:'row', alignItems:'center', justifyContent:'space-between', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
       <BaseButton onPress={()=>{navigation.navigate('Home')}}>
         <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
       </BaseButton>
@@ -39,8 +42,24 @@ const Header = ({navigation})=> (
     </View>
 )
 
+const Footer = ({navigation})=> (
+  <View style={{ backgroundColor:'#FFF', flexDirection:'row', justifyContent:'space-around', borderTopColor:'#D9D9D9', borderTopWidth:1 }}>
+      <BaseButton style={{alignItems:'center', padding:3, justifyContent:'center'}} onPress={()=>{navigation.navigate('Home')}}>
+          <Foundation name='home' size={32} color={'black'}></Foundation>
+          <Text style={{ color:'black' }}>Home</Text>
+      </BaseButton>
+      <BaseButton style={{ alignItems:'center', padding:3, justifyContent:'center' }} onPress={()=>{navigation.navigate('Upload')}}>
+          <SimpleLineIcons name='plus' size={38} color={'black'}></SimpleLineIcons>
+      </BaseButton>
+      <BaseButton style={{alignItems:'center', padding:3, justifyContent:'center'}} onPress={()=>{navigation.navigate('Profile')}}>
+          <MaterialCommunityIcons name='account-circle-outline' size={32} color={'black'}></MaterialCommunityIcons>
+          <Text style={{ color:'black' }}>Profile</Text>
+      </BaseButton>
+  </View>
+)
+
 const PhotoProfile = ({navigation})=> (
-  <View style={{ padding:20 }}>
+  <View style={{ marginBottom:15, marginTop:50, paddingHorizontal:20 }}>
     <View style={{ paddingHorizontal:10 }}>
       <View style={{ alignItems:'center', justifyContent:'center'}}>
         <Image style={{ marginBottom:20, flexDirection:'row' }} source={require('../assets/images/photo_profile.png')}></Image>
