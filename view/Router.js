@@ -40,7 +40,7 @@ const Stack = createStackNavigator()
 export default function Router() {
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode='none' initialRouteName='EditPostingan'>
+      <Stack.Navigator headerMode='none' initialRouteName='SplashScreen'>
         <Stack.Screen name='Home' component={Home}>
 
         </Stack.Screen>

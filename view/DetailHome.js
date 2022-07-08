@@ -18,9 +18,15 @@ export class DetailHome extends Component {
 }
 
 const Header = ({navigation})=> (
-    <BaseButton style={{ backgroundColor:'white', paddingHorizontal:20, paddingTop:20, paddingBottom:10, elevation:4,zIndex:9 }} onPress={()=>{navigation.navigate('Home')}}>
-        <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
-    </BaseButton>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:20, PaddingBottom:10, marginBottom:5, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:15 }} onPress={()=>{navigation.navigate('Profile')}}>
+            <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
+        </BaseButton>
+        <View style={{ alignItems:'center', flex:1 }}>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:18, color:'black', paddingBottom:15 }}>Detail Home</Text>
+        </View>
+        <View style={{ width:30 }}></View>
+    </View>
 )
 
 const Postingan = ()=> (

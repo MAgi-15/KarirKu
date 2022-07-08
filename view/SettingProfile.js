@@ -1,4 +1,4 @@
-import { StatusBar, Text, View, Image } from 'react-native'
+import { StatusBar, Text, View, Image, AsyncStorage } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -7,11 +7,27 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class SettingProfile extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+          Username: ''
+        }
+      }
+
+    UNSAFE_componentWillMount = async(filterId)=> {
+        console.log("data_id", filterId)
+        const value = await AsyncStorage.getItem('users');
+        // console.log("dari async storage", value)
+        const obj = JSON.parse(value);
+        console.log("Username", obj.data.username)
+        this.setState({Username : obj.data.username})
+    }
+
   render() {
     return (
       <View style={{  }}>
         <Header navigation={this.props.navigation}></Header>
-        <PhotoProfile></PhotoProfile>
+        <PhotoProfile Username={this.state.Username}></PhotoProfile>
         <Menu navigation={this.props.navigation}></Menu>
         <MenuLogout navigation={this.props.navigation}></MenuLogout>
       </View>
@@ -31,13 +47,13 @@ const Header = ({navigation})=> (
     </View>
 )
 
-const PhotoProfile = ()=> (
+const PhotoProfile = ({Username})=> (
     <View style={{ backgroundColor:'white', padding:20, paddingTop:40, marginBottom: 5, elevation:1 }}>
         <View style={{ paddingHorizontal:0 }}>
             {/* <View style={{ borderBottomWidth:1, borderColor:'#A5A5A5', marginBottom:10 }}></View> */}
             <View style={{ alignItems:'center', justifyContent:'center' }}>
                 <Image style={{ marginBottom:20, flexDirection:'row' }} source={require('../assets/images/photo_profile.png')}></Image>
-                <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginBottom:10 }}>@Username</Text>
+                <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:15, color:'black', marginBottom:10 }}>{Username}</Text>
             </View>
             {/* <View style={{ borderBottomWidth:1, borderColor:'#A5A5A5', marginBottom:10 }}></View> */}
         </View>

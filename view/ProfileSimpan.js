@@ -1,4 +1,4 @@
-import { StatusBar, Text, View, Image } from 'react-native'
+import { StatusBar, Text, View, Image, AsyncStorage } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Foundation from 'react-native-vector-icons/Foundation'
@@ -10,13 +10,36 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class ProfileSimpan extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      Username: ''
+    }
+  }
+
+UNSAFE_componentWillMount = async(filterId)=> {
+  console.log("data_id", filterId)
+  const value = await AsyncStorage.getItem('users');
+  // console.log("dari async storage", value)
+  const obj = JSON.parse(value);
+  console.log("Username", obj.data.username)
+  this.setState({Username : obj.data.username}) 
+  axios({
+    method: 'GET',
+    url: Constant.api_url+'api/uploadThread/threadbyUser/' + obj.data.username,
+  }).then( (parameter)=> {
+    console.log(JSON.stringify(parameter.data, null, 2))
+    this.setState({listUserThread: parameter.data.data})
+  })
+}
+
   render() {
     return (
         <View style={{ backgroundColor:'white', flex:1 }}>
             <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
             <Header navigation={this.props.navigation}></Header>
             <ScrollView>
-                <PhotoProfile navigation={this.props.navigation}></PhotoProfile>
+                <PhotoProfile navigation={this.props.navigation} Username={this.state.Username}></PhotoProfile>
                 <Postingan navigation={this.props.navigation}></Postingan>
                 <Postingan navigation={this.props.navigation}></Postingan>
                 <Postingan navigation={this.props.navigation}></Postingan>
@@ -57,12 +80,12 @@ const Footer = ({navigation})=> (
   </View>
 )
 
-const PhotoProfile = ({navigation})=> (
+const PhotoProfile = ({navigation, Username})=> (
   <View style={{ marginBottom:15, marginTop:50, paddingHorizontal:20 }}>
     <View style={{ paddingHorizontal:10 }}>
       <View style={{ alignItems:'center', justifyContent:'center'}}>
         <Image style={{ marginBottom:20, flexDirection:'row' }} source={require('../assets/images/photo_profile.png')}></Image>
-        <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginBottom:60 }}>@Username</Text>
+        <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:15, color:'black', marginBottom:60 }}>{Username}</Text>
       </View>
       <View style={{ borderBottomWidth:1, borderColor:'#D9D9D9', marginBottom:-60 }}></View>
     </View>
@@ -70,7 +93,7 @@ const PhotoProfile = ({navigation})=> (
       <View style={{ backgroundColor:'white', elevation:5, width:190, height:55, padding:10 }}>
         <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center' }}>
           <BaseButton onPress={()=>{navigation.navigate('Profile')}}>
-            <Foundation name='upload' size={30} color={'black'} style={{ marginTop:-2 }} ></Foundation>
+            <MaterialCommunityIcons name='folder-upload-outline' size={30} color={'black'} style={{ marginTop:-2 }} ></MaterialCommunityIcons>
           </BaseButton>
           <View style={{ borderRightColor:'black', borderRightWidth:2, marginHorizontal:37, paddingVertical:20, marginTop:-2 }}></View>
           <BaseButton onPress={()=>{navigation.navigate('ProfileSimpan')}}>
@@ -90,7 +113,9 @@ const Postingan = ({navigation})=> (
         <View>
           <View style={{ flexDirection:'row' }}>
             <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', borderBottomColor:'black', borderBottomWidth:1, marginRight:90}}>Luminor Hotel</Text>
-            <Ionicons name='bookmark' size={23} color={'black'}></Ionicons>
+            <BaseButton>
+              <Ionicons name='bookmark' size={23} color={'black'}></Ionicons>
+            </BaseButton>
           </View>
           <BaseButton style={{ marginVertical:10, marginBottom:10 }} onPress={()=>{navigation.navigate('DetailHome')}}>
             <Text style={{ fontFamily:'Poppins-Medium', fontSize:14, color:'black' }}>Lowongan Kerja di Luminor</Text>
@@ -98,10 +123,10 @@ const Postingan = ({navigation})=> (
             <Text style={{ fontFamily:'Poppins-Light', fontSize:12, color:'black', borderBottomColor:'black' }}>16/06/2022</Text>
           </BaseButton>
           <View style={{ flexDirection:'row', alignItems:'center' }}>
-            <View style={{ flexDirection:'row', alignContent:'center', marginRight:20 }}>
+            <BaseButton style={{ flexDirection:'row', alignContent:'center', marginRight:20 }}>
               <AntDesign name='like2' size={17} color={'black'} style={{ marginRight:5 }}></AntDesign>
               <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>20</Text>
-            </View>
+            </BaseButton>
             <BaseButton style={{ flexDirection:'row', alignContent:'center' }} onPress={()=>{navigation.navigate('CommentScreen')}}>
               <Feather name='message-square' size={17} color={'black'} style={{ marginRight:5 }}></Feather>
               <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>9</Text>

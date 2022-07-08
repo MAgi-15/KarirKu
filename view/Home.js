@@ -1,4 +1,4 @@
-import { Text, View, Image, StatusBar, StyleSheet } from 'react-native'
+import { Text, View, Image, StatusBar, StyleSheet, ScrollView, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -6,7 +6,7 @@ import Feather from 'react-native-vector-icons/Feather'
 import Foundation from 'react-native-vector-icons/Foundation'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
+import { BaseButton } from 'react-native-gesture-handler'
 
 export class Home extends Component {
   render() {
@@ -36,9 +36,9 @@ const Header = ({navigation})=> (
   <View style={{ backgroundColor:'white', padding:10,elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
     <View style={{ flexDirection:'row', alignItems:'center', marginVertical:3 }}>
       <BaseButton style={{ paddingRight:10 }} onPress={()=>{navigation.navigate('Notifikasi')}}>
-        <Ionicons name='notifications-sharp' size={30}></Ionicons>
+        <Ionicons name='notifications-sharp' size={30} color={'black'}></Ionicons>
       </BaseButton>
-      <View style={{ borderWidth:2, borderColor:'#F3F3F3', borderRadius:32, paddingRight:20, paddingLeft:10 }}>
+      <View style={{ borderWidth:2, borderColor:'#F3F3F3', borderRadius:32, paddingRight:20, paddingLeft:10, paddingVertical:1 }}>
         <View style={{ flexDirection:'row' }}>
           <View style={{ paddingRight:190 }}>
             <TextInput style={{ fontSize:15, fontStyle:'normal', color: "#696969" }} placeholder={'Cari Pekerjaan'}></TextInput>
@@ -51,11 +51,24 @@ const Header = ({navigation})=> (
       </View>
     </View>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical:3 }}>
+      <BaseButton>
         <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Purwokerto</Text>
+      </BaseButton>
+      <BaseButton>
+        <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Purwokerto</Text>
+      </BaseButton>
+      <BaseButton>
         <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Jakarta</Text>
+      </BaseButton>
+      <BaseButton>
         <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Yogyakarta</Text>
+      </BaseButton>
+      <BaseButton>
         <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Bandung</Text>
+      </BaseButton>
+      <BaseButton>
         <Text style={{ backgroundColor:'#F8FDFF', padding:3, elevation:2, minWidth:100, textAlign:'center' }}>Surabaya</Text>
+      </BaseButton>
     </ScrollView>
   </View>
 )
@@ -94,7 +107,9 @@ const Postingan = ({navigation})=> (
         <View>
           <View style={{ flexDirection:'row' }}>
             <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', borderBottomColor:'black', borderBottomWidth:1, marginRight:90}}>Luminor Hotel</Text>
-            <Ionicons name='bookmark-outline' size={23} color={'black'}></Ionicons>
+            <BaseButton>
+              <Ionicons name='bookmark-outline' size={23} color={'black'}></Ionicons>
+            </BaseButton>
           </View>
           <BaseButton style={{ marginVertical:10, marginBottom:10 }} onPress={()=>{navigation.navigate('DetailHome')}}>
             <Text style={{ fontFamily:'Poppins-Medium', fontSize:14, color:'black' }}>Lowongan Kerja di Luminor</Text>
@@ -102,10 +117,10 @@ const Postingan = ({navigation})=> (
             <Text style={{ fontFamily:'Poppins-Light', fontSize:12, color:'black', borderBottomColor:'black' }}>16/06/2022</Text>
           </BaseButton>
           <View style={{ flexDirection:'row', alignItems:'center' }}>
-            <View style={{ flexDirection:'row', alignContent:'center', marginRight:20 }}>
+            <BaseButton style={{ flexDirection:'row', alignContent:'center', marginRight:20 }}>
               <AntDesign name='like2' size={17} color={'black'} style={{ marginRight:5 }}></AntDesign>
               <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>20</Text>
-            </View>
+            </BaseButton>
             <BaseButton style={{ flexDirection:'row', alignContent:'center' }} onPress={()=>{navigation.navigate('CommentScreen')}}>
               <Feather name='message-square' size={17} color={'black'} style={{ marginRight:5 }}></Feather>
               <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>9</Text>

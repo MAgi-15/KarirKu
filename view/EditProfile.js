@@ -1,4 +1,4 @@
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, AsyncStorage } from 'react-native'
 import React, { Component } from 'react'
 import { BaseButton, TextInput } from 'react-native-gesture-handler'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -6,12 +6,31 @@ import Feather from 'react-native-vector-icons/Feather'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export class EditProfile extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            Username: '',
+            Email: ''
+        }
+    }
+
+    UNSAFE_componentWillMount = async(filterId)=> {
+        console.log("data_id", filterId)
+        const value = await AsyncStorage.getItem('users');
+        // console.log("dari async storage", value)
+        const obj = JSON.parse(value);
+        console.log("Username", obj.data.username)
+        this.setState({Username : obj.data.username})
+        console.log("Email", obj.data.email)
+        this.setState({Email : obj.data.email})
+    }
+
   render() {
     return (
       <View style={{ backgroundColor:'#FFF', flex:1 }}>
         <Header navigation={this.props.navigation}></Header>
         <PhotoProfile></PhotoProfile>
-        <Form navigation={this.props.navigation}></Form>
+        <Form navigation={this.props.navigation} Username={this.state.Username} Email={this.state.Email}></Form>
       </View>
     )
   }
@@ -41,14 +60,14 @@ const PhotoProfile = ()=> (
     </View>
 )
 
-const Form = ({navigation})=> (
+const Form = ({navigation, Username, Email})=> (
     <View style={{ padding:20 }}>
         <View style={{ padding:20, flexDirection:'row', alignItems:'center', marginBottom:10 }}>
             <View style={{ marginRight:10 }}>
                 <Feather name='user' size={27} color={'#454545'}></Feather>
             </View>
             <View>
-                <TextInput style={{ fontFamily:'Poppins-Light', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >Username</TextInput>
+                <TextInput style={{ fontFamily:'Poppins-Light', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >{Username}</TextInput>
             </View>
         </View>
         <View style={{ padding:20, flexDirection:'row', alignItems:'center', marginBottom:50 }}>
@@ -56,7 +75,7 @@ const Form = ({navigation})=> (
                 <MaterialCommunityIcons name='email-outline' size={27} color={'#454545'} ></MaterialCommunityIcons>
             </View>
             <View>
-                <TextInput style={{ fontFamily:'Poppins-Light', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >Email</TextInput>
+                <TextInput style={{ fontFamily:'Poppins-Light', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >{Email}</TextInput>
             </View>
         </View>
         <BaseButton style={{ alignItems:'center', marginBottom:20 }} onPress={()=>{navigation.navigate('SettingProfile')}}>

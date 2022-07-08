@@ -1,9 +1,9 @@
-import { Text, View, Image, StatusBar } from 'react-native'
+import { Text, View, Image, StatusBar, ScrollView, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Feather from 'react-native-vector-icons/Feather'
-import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
+import { BaseButton } from 'react-native-gesture-handler'
 
 export class EditPostingan extends Component {
   render() {
@@ -76,11 +76,11 @@ const EditPost = ({navigation})=> (
         <Text style={{ marginBottom:5, fontFamily:'Poppins-SemiBold', fontSize:16, color:'black' }}>Cara Daftar</Text>
         <View style={{ borderBottomWidth:1, borderColor:'#454545', marginBottom:70 }}>
             <TextInput style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black', paddingBottom:0 }} >Jika berminat silahkan kirim berkas lamaran melalui Email : contoh@gmail.com (Paling lambat 30 Juni 2022)</TextInput></View>
-        <BaseButton style={{ alignItems:'center', marginBottom:100 }} onPress={()=>{navigation.navigate('Profile')}}>
-            <View style={{ backgroundColor:'#511AEF', height:45, width:200, alignItems:'center', flexDirection:'row', justifyContent:'center' }}>
+        <View style={{ alignItems:'center', marginBottom:100 }} >
+            <BaseButton style={{ backgroundColor:'#511AEF', height:45, width:200, alignItems:'center', flexDirection:'row', justifyContent:'center' }} onPress={()=>{navigation.navigate('Profile')}}>
                 <Text style={{fontFamily:'Poppins-Regular', fontSize:16, color:'white' }}>Save</Text>
-            </View>
-        </BaseButton>
+            </BaseButton>
+        </View>
     </View>
 )
 
