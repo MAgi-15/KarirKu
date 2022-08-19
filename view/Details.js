@@ -37,20 +37,18 @@ export class Details extends Component {
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingVertical:20, 
-    marginBottom:5, alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
-        <BaseButton onPress={()=>{navigation.navigate('SettingProfile')}}>
-            <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:12, flexDirection:'row', alignItems:'center', elevation:2, borderBottomColor:'#D9D9D9', borderBottomWidth:0.5 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:12 }} onPress={()=>{navigation.navigate('SettingProfile')}}>
+            <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:20, color:'black', paddingBottom:15 }}>Details</Text>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'#383838', paddingBottom:12 }}>Details</Text>
         </View>
         <View style={{ width:30 }}></View>
     </View>
 )
-
 const PhotoProfile = ()=> (
-    <View style={{ padding:20, paddingTop:40 }}>
+    <View style={{ paddingHorizontal:8, paddingTop:40, marginBottom:30 }}>
         <View style={{ paddingHorizontal:0 }}>
             {/* <View style={{ borderBottomWidth:1, borderColor:'#A5A5A5', marginBottom:10 }}></View> */}
             <View style={{ alignItems:'center', justifyContent:'center' }}>
@@ -62,21 +60,21 @@ const PhotoProfile = ()=> (
 )
 
 const Form = ({Username, Email})=> (
-    <View style={{ padding:20 }}>
-        <View style={{ padding:20, flexDirection:'row', alignItems:'center', marginBottom:20 }}>
+    <View style={{ paddingHorizontal:8 }}>
+        <View style={{ paddingVertical:20, flexDirection:'row', justifyContent:'center', alignItems:'center', marginBottom:20 }}>
             <View style={{ marginRight:10 }}>
-                <Feather name='user' size={27} color={'#454545'}></Feather>
+                <Feather name='user' size={24} color={'#797979'}></Feather>
             </View>
             <View>
-                <Text style={{ fontFamily:'Poppins-Regular', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >{Username}</Text>
+                <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color: "#383838", borderBottomWidth:1, borderColor:'#B5B5B5', width:280, paddingBottom:0 }} >{Username}</Text>
             </View>
         </View>
-        <View style={{ padding:20, flexDirection:'row', alignItems:'center' }}>
+        <View style={{ paddingVertical:20, flexDirection:'row', justifyContent:'center', alignItems:'center' }}>
             <View style={{ marginRight:10 }}>
-                <MaterialCommunityIcons name='email-outline' size={27} color={'#454545'} ></MaterialCommunityIcons>
+                <MaterialCommunityIcons name='email-outline' size={24} color={'#797979'} ></MaterialCommunityIcons>
             </View>
             <View>
-                <Text style={{ fontFamily:'Poppins-Regular', fontSize:16, color: "#696969", borderBottomWidth:1, borderColor:'#454545', width:280, paddingBottom:0 }} >{Email}</Text>
+                <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color: "#383838", borderBottomWidth:1, borderColor:'#B5B5B5', width:280, paddingBottom:0 }} >{Email}</Text>
             </View>
         </View>
     </View>

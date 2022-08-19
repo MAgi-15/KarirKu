@@ -34,6 +34,10 @@ import NextUpload from './NextUpload'
 import EditProfile from './EditProfile'
 import Details from './Details'
 import EditPostingan from './EditPostingan'
+import { NextUpload1 } from './NextUpload1'
+import EditPostingan1 from './EditPostingan1'
+import DetailNotif from './DetailNotif'
+import ReplyComment from './ReplyComment'
 
 const Stack = createStackNavigator()
 
@@ -86,7 +90,18 @@ export default function Router() {
         <Stack.Screen name='EditPostingan' component={EditPostingan}>
 
         </Stack.Screen>
+        <Stack.Screen name='NextUpload1' component={NextUpload1}>
 
+        </Stack.Screen>
+        <Stack.Screen name='DetailNotif' component={DetailNotif}>
+
+        </Stack.Screen>
+        <Stack.Screen name='EditPostingan1' component={EditPostingan1}>
+
+        </Stack.Screen>
+        <Stack.Screen name='ReplyComment' component={ReplyComment}>
+
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   )

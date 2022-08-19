@@ -1,69 +1,72 @@
 import { Text, View, Image, StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 
 export class DetailHome extends Component {
   render() {
+    const data_kirim = this.props.route.params.data
+    console.log("data kirim", data_kirim)
     return (
-      <View style={{ backgroundColor:'#fff' }}>
+      <View style={{ backgroundColor:'#fff', flex:1 }}>
         <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header navigation={this.props.navigation}></Header>
         <ScrollView>
-            <Postingan></Postingan>
+            <Postingan data_kirim={data_kirim}></Postingan>
         </ScrollView>
       </View>
     )
   }
 }
 
-const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:20, PaddingBottom:10, marginBottom:5, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
-        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:15 }} onPress={()=>{navigation.navigate('Profile')}}>
-            <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
-        </BaseButton>
-        <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:18, color:'black', paddingBottom:15 }}>Detail Home</Text>
-        </View>
-        <View style={{ width:30 }}></View>
+const Header = ({ navigation }) => (
+    <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingTop: 12, flexDirection: 'row', alignItems: 'center', elevation: 2, borderBottomColor: '#D9D9D9', borderBottomWidth: 0.5 }}>
+      <BaseButton style={{ justifyContent: 'flex-start', width: 30, paddingBottom: 12 }} onPress={() => { navigation.navigate('Home') }}>
+        <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
+      </BaseButton>
+      <View style={{ alignItems: 'center', flex: 1 }}>
+        <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16, color: '#383838', paddingBottom: 12 }}>Detail Post</Text>
+      </View>
+      <View style={{ width: 30 }}></View>
     </View>
-)
+  )
 
-const Postingan = ()=> (
-    <View style={{ paddingVertical:20 }}>
-        <View style={{ alignItems:'center', justifyContent:'center', marginBottom:10 }}>
-            <Image style={{ width:120, height:120 }} source={require('../assets/images/logo_luminor2.png')}></Image>
+const Postingan = ({data_kirim})=> (
+    <View style={{ paddingVertical:16, paddingHorizontal:20}}>
+        <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'black', marginBottom:16, width:340 }}>{data_kirim.judul}</Text>
+        <View style={{ alignItems:'center', justifyContent:'center', marginBottom:16 }}>
+            <Image style={{ width:370, height:200 }} source={{uri: Constant.api_url+ data_kirim.gambar}}></Image>
         </View>
-        <View style={{ paddingHorizontal:30, paddingVertical:20 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginBottom:20 }}>Lowongan Kerja di Luminor Hotel Purwokerto</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>Luminor Hotel Purwokerto adalah hotel bintang empat yang mulai beroperasional sejak Maret 2020.  Luminor Hotel Purwokerto berlokasi di Jalan Jenderal Sudirman No. 324, 53116 Purwokerto.</Text>
+        <View style={{ marginBottom:15 }}>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginRight:10 }}>Kategori :</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black' }}>{data_kirim.kategori}</Text>
         </View>
-        <View style={{ alignItems:'center', paddingVertical:20 }}>
-            <Text style={{ fontFamily:'Poppins-Medium', fontSize:16, color:'black' }}>Customer Service</Text>
+        <View style={{ marginBottom:15 }}>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginRight:10 }}>Pekerjaan :</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', width:250 }}>{data_kirim.nama_pekerjaan}</Text>
         </View>
-        <View style={{ paddingHorizontal:30, paddingVertical:20 }}>
+        <View style={{ marginBottom:15 }}>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black', marginRight:10 }}>Deskripsi :</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', width:340 }}>{data_kirim.deskripsi}</Text>
+        </View>
+        <View style={{ marginBottom:15 }}>
             <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black' }}>Kualifikasi :</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Pria / Wanita</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Usia minimal 18 tahun, maksimal 25 tahun</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Sehat jasmani, rohani, tidak buta warna, tidak bertato dan bebas narkoba</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Pendidikan minimal SMA/SMK sederajat</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Fresh Graduate diperbolehkan melamar</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Memiliki kemampuan komunikasi yang baik</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', width:340 }}>{data_kirim.kualifikasi}</Text>
         </View>
-        <View style={{ paddingHorizontal:30, paddingVertical:20 }}>
+        <View style={{ marginBottom:15 }}>
             <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black' }}>Kelengkapan Berkas :</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Fotocopy KTP</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Fotocopy KK terbaru</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Surat keterangan sehat dan buta warna (mencantumkan tinggi badan dan berat badan)</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- CV</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Foto berwarna ukuran 4x6 2 lembar (background warna merah)</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>- Fotocopy ijazah terakhir</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', width:340 }}>{data_kirim.kelengkapan_berkas}</Text>
         </View>
-        <View style={{ paddingHorizontal:30, paddingTop:20, paddingBottom:80 }}>
+        <View style={{ marginBottom:20 }}>
             <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:14, color:'black' }}>Cara Daftar :</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>Jika berminat silahkan kirim berkas lamaran melalui</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>Email : contoh@gmail.com</Text>
-            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>(Paling lambat 30 Juni 2022)</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:13, color:'black', width:340 }}>{data_kirim.cara_daftar}</Text>
+            {/* <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>Email : contoh@gmail.com</Text>
+            <Text style={{ fontFamily:'Poppins-Regular', fontSize:12, color:'black' }}>(Paling lambat 30 Juni 2022)</Text> */}
+        </View>
+        <View style={{ backgroundColor:'white', padding:10, borderColor:'#D9D9D9', borderWidth:1, borderRadius:10, flexDirection:'column', alignItems:'center' }}>
+            <Image style={{ flexDirection:'row', width:40, height:40, marginRight:10, marginBottom:8 }} source={require('../assets/images/photo_profile.png')}></Image>
+            <Text style={{ fontFamily:'Poppins-Bold', fontSize:14, color:'#511AEF' }}>{data_kirim.username}</Text>
         </View>
     </View>
 )
