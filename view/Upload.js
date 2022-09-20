@@ -1,4 +1,4 @@
-import { Text, View, Image, Modal, Button, Dimensions, AsyncStorage } from 'react-native'
+import { Text, View, Image, Modal, Button, Dimensions, AsyncStorage, StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -113,6 +113,7 @@ export class Upload extends Component {
     console.log(photoAttachment)
     return (
       <View style={{ backgroundColor: '#FFF', flex: 1 }}>
+        <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header PostData={PostData} navigation={this.props.navigation} kirim={() => {
           this.KirimData()
         }}></Header>

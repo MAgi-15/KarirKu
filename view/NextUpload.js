@@ -1,4 +1,4 @@
-import { Text, View, Image, Dimensions } from 'react-native'
+import { Text, View, Image, Dimensions, StatusBar } from 'react-native'
 import React, { Component, useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -57,6 +57,7 @@ export class NextUpload extends Component {
     console.log("datakirim", data_kirim)
     return (
       <View style={{ backgroundColor:'#FFF', flex:1 }}>
+        <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header navigation={this.props.navigation}></Header>
         <ScrollView>
             <View style={{ padding:30 }}>
@@ -179,7 +180,7 @@ export class NextUpload extends Component {
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:30, paddingVertical:15, elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:30, paddingVertical:12, elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
       <BaseButton onPress={()=>{navigation.navigate('Upload')}}>
         <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
       </BaseButton>

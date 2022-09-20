@@ -1,4 +1,4 @@
-import { Text, View, Image, AsyncStorage } from 'react-native'
+import { Text, View, Image, AsyncStorage, StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import { BaseButton, TextInput } from 'react-native-gesture-handler'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -28,6 +28,7 @@ export class Details extends Component {
     render() {
         return (
         <View style={{ backgroundColor:'#FFF', flex:1 }}>
+            <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
             <Header navigation={this.props.navigation}></Header>
             <PhotoProfile></PhotoProfile>
             <Form Username={this.state.Username} Email={this.state.Email}></Form>
@@ -37,12 +38,12 @@ export class Details extends Component {
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:12, flexDirection:'row', alignItems:'center', elevation:2, borderBottomColor:'#D9D9D9', borderBottomWidth:0.5 }}>
-        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:12 }} onPress={()=>{navigation.navigate('SettingProfile')}}>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingVertical:12, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:0.5 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30 }} onPress={()=>{navigation.navigate('SettingProfile')}}>
             <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'#383838', paddingBottom:12 }}>Details</Text>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'#383838' }}>Details</Text>
         </View>
         <View style={{ width:30 }}></View>
     </View>

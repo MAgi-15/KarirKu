@@ -1,4 +1,4 @@
-import { Text, View, Image, AsyncStorage, Alert } from 'react-native'
+import { Text, View, Image, AsyncStorage, Alert, StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -322,6 +322,7 @@ export class DetailNotif extends Component {
         console.log("data kirim", data_kirim)
         return (
             <View style={{ backgroundColor: '#FFF', flex: 1 }}>
+                <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
                 <Header navigation={this.props.navigation}></Header>
                 <ScrollView>
                     {this.state.dataPost.map((item, index) => {
@@ -341,12 +342,12 @@ export class DetailNotif extends Component {
 }
 
 const Header = ({ navigation }) => (
-    <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingTop: 12, marginBottom: 5, flexDirection: 'row', alignItems: 'center', elevation: 1, borderBottomColor: '#D9D9D9', borderBottomWidth: 0.5 }}>
-        <BaseButton style={{ justifyContent: 'flex-start', width: 30, paddingBottom: 12 }} onPress={() => { navigation.navigate('Notifikasi') }}>
+    <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingVertical: 12, marginBottom: 5, flexDirection: 'row', alignItems: 'center', elevation: 1, borderBottomColor: '#D9D9D9', borderBottomWidth: 0.5 }}>
+        <BaseButton style={{ justifyContent: 'flex-start', width: 30 }} onPress={() => { navigation.navigate('Notifikasi') }}>
             <Ionicons name='arrow-back' size={30} color={'#383838'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems: 'center', flex: 1 }}>
-            <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 18, color: '#383838', paddingBottom: 12 }}>Komentar</Text>
+            <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 18, color: '#383838' }}>Komentar</Text>
         </View>
         <View style={{ width: 30 }}></View>
     </View>

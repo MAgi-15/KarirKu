@@ -1,4 +1,4 @@
-import { Text, View, Image, StatusBar, StyleSheet, ScrollView, TextInput, AsyncStorage, Pressable } from 'react-native'
+import { Text, View, Image, StatusBar, StyleSheet, ScrollView, TextInput, AsyncStorage, Pressable, Alert } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -259,30 +259,30 @@ export class Home extends Component {
       let Simpan = back.data
       console.log('LIKE', JSON.stringify(Simpan, null, 2))
       if (back.status === 200) {
-        if (back.data.message == 'success save') {
-          // let simpan_master = this.state.masterData
-          // let simpan_list = this.state.listPostingan
-          // simpan_master.map((item, index) => {
-          //   if (item == filterId) { simpan_master[index]['jumlah_simpan']++ }
-          // })
-          // simpan_list.map((item, index) => {
-          //   if (item.id_postingan == filterId) { simpan_list[index]['jumlah_simpan']++ }
-          // })
-          // this.setState({ simpanPostingan: simpan_list, masterData: simpan_master })
-          this.setState({ simpanPostingan: this.state.simpanPostingan, masterData: this.state.masterData })
-        }
-        else if (back.data.message == 'success unsave') {
-          // let simpan_master = this.state.masterData
-          // let simpan_list = this.state.listPostingan
-          // simpan_master.map((item, index) => {
-          //   if (item == filterId) { simpan_master[index]['jumlah_simpan']-- }
-          // })
-          // simpan_list.map((item, index) => {
-          //   if (item.id_postingan == filterId) { simpan_list[index]['jumlah_simpan']-- }
-          // })
-          // this.setState({ simpanPostingan: simpan_list, masterData: simpan_master })
-          this.setState({ simpanPostingan: this.state.simpanPostingan, masterData: this.state.masterData })
-        }
+        // if (back.data.message == 'success save') {
+        //   // let simpan_master = this.state.masterData
+        //   // let simpan_list = this.state.listPostingan
+        //   // simpan_master.map((item, index) => {
+        //   //   if (item == filterId) { simpan_master[index]['jumlah_simpan']++ }
+        //   // })
+        //   // simpan_list.map((item, index) => {
+        //   //   if (item.id_postingan == filterId) { simpan_list[index]['jumlah_simpan']++ }
+        //   // })
+        //   // this.setState({ simpanPostingan: simpan_list, masterData: simpan_master })
+        //   this.setState({ simpanPostingan: this.state.simpanPostingan, masterData: this.state.masterData })
+        // }
+        // else if (back.data.message == 'success unsave') {
+        //   // let simpan_master = this.state.masterData
+        //   // let simpan_list = this.state.listPostingan
+        //   // simpan_master.map((item, index) => {
+        //   //   if (item == filterId) { simpan_master[index]['jumlah_simpan']-- }
+        //   // })
+        //   // simpan_list.map((item, index) => {
+        //   //   if (item.id_postingan == filterId) { simpan_list[index]['jumlah_simpan']-- }
+        //   // })
+        //   // this.setState({ simpanPostingan: simpan_list, masterData: simpan_master })
+        //   this.setState({ simpanPostingan: this.state.simpanPostingan, masterData: this.state.masterData })
+        // }
         console.log("masuk")
         let simpan = this.state.listSimpan
         simpan = [...simpan, back.data]
@@ -316,6 +316,11 @@ export class Home extends Component {
             return <Postingan SimpanPost={this.state.SimpanPost} likePost={this.state.likePost} data={item} key={index} navigation={this.props.navigation} likePostingan={(like) => { this.Like(like) }} simpanPostingan={(simpan) => { this.Simpan(simpan) }} ></Postingan>
           })}
         </ScrollView>
+        <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end', marginTop:-70 }}>
+          <BaseButton style={{ backgroundColor: '#7D53F5', elevation: 3, width: 48, height: 48, borderRadius: 100, alignItems: 'center', justifyContent: 'center', margin: 10, marginRight: 20 }} onPress={() => { this.props.navigation.navigate('Notifikasi') }}>
+            <Ionicons name='notifications-outline' size={27} color={'#FFF'}></Ionicons>
+          </BaseButton>
+        </View>
         <Footer navigation={this.props.navigation}></Footer>
       </View>
     )
@@ -323,16 +328,18 @@ export class Home extends Component {
 }
 
 const Header = ({ navigation, Filter, GetAll, search, searchText, searchPost }) => (
-  <View style={{ backgroundColor: '#FFF', paddingVertical: 10, paddingHorizontal: 16, borderBottomColor: '#D9D9D9', borderBottomWidth: 1, elevation:1 }}>
+  <View style={{ backgroundColor: '#FFF', paddingTop: 12, paddingBottom:8, paddingHorizontal: 16, borderBottomColor: '#D9D9D9', borderBottomWidth: 1, elevation: 1 }}>
     <View style={{ marginBottom: 10 }}>
       {/* <BaseButton style={{ paddingRight: 10 }} onPress={() => { navigation.navigate('Notifikasi') }}>
         <Ionicons name='notifications-outline' size={30} color={'#383838'}></Ionicons>
       </BaseButton> */}
-      <View style={{ borderWidth: 2, borderColor: '#F3F3F3', borderRadius: 32, paddingRight: 7, paddingLeft: 10, paddingVertical: 1 }}>
+      <View style={{ borderWidth: 2, borderColor: '#F3F3F3', borderRadius: 32, paddingRight: 7, paddingLeft: 10, paddingVertical: 0 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-          <TextInput style={{ fontSize: 15, fontStyle: 'normal', color: "#696969", width: 310 }} placeholder={'Cari Pekerjaan'} value={searchText} onChangeText={(text) => { search(text) }} ></TextInput>
+          <View>
+            <TextInput style={{ fontSize: 15, fontStyle: 'normal', color: "#696969", width:200 }} placeholder={'Cari Pekerjaan'} value={searchText} onChangeText={(text) => { search(text) }} ></TextInput>
+          </View>
           {/* <Image style={{ position: 'absolute', padding: 5 }} source={require('../assets/icons/ellipse_search.png')}></Image> */}
-          <BaseButton onPress={() => { searchPost() }} style={{ backgroundColor: '#D8D8D8', width: 38, height: 38, padding: 5, borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
+          <BaseButton onPress={() => { searchPost() }} style={{ backgroundColor: '#D8D8D8', width: 38, height: 38, padding: 2, borderRadius: 100, alignItems: 'center', justifyContent: 'center' }}>
             <AntDesign name='search1' size={16} color={'black'}></AntDesign>
           </BaseButton>
         </View>
@@ -340,60 +347,82 @@ const Header = ({ navigation, Filter, GetAll, search, searchText, searchPost }) 
     </View>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: 3 }}>
       <BaseButton onPress={() => { GetAll() }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 2, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Semua</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 2, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Semua</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Purwokerto") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Purwokerto</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Purwokerto</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Jakarta") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Jakarta</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Jakarta</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Yogyakarta") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Yogyakarta</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Yogyakarta</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Surabaya") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Surabaya</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Surabaya</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Semarang") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Semarang</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Semarang</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Bandung") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Bandung</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Bandung</Text>
       </BaseButton>
       <BaseButton onPress={() => { Filter("Bali") }}>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:14, color:'#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Bali</Text>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: '#797979', backgroundColor: '#F6F2FF', padding: 3, elevation: 1, minWidth: 100, textAlign: 'center', marginRight: 5 }}>Bali</Text>
       </BaseButton>
     </ScrollView>
   </View>
 )
 
+// const Footer = ({ navigation }) => (
+//   <View style={{ flexDirection: 'column' }}>
+//     {/* <View style={{ marginTop: -70, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+//       <BaseButton style={{ backgroundColor: '#7D53F5', elevation:3, width: 48, height: 48, borderRadius: 100, alignItems: 'center', justifyContent: 'center', margin: 10, marginRight: 20 }} onPress={() => { navigation.navigate('Notifikasi') }}>
+//         <Ionicons name='notifications-outline' size={27} color={'#FFF'}></Ionicons>
+//       </BaseButton>
+//     </View> */}
+//     <View style={{ backgroundColor: '#FFF', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', borderTopColor: '#D9D9D9', borderTopWidth: .8, paddingHorizontal: 10, paddingVertical: 4 }}>
+//       <BaseButton style={{ alignItems: 'center', justifyContent: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Home') }}>
+//         <Image style={{ width: 25, height: 25 }} source={require('../assets/icons/home_1.png')}></Image>
+//         <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: '#383838' }}>Home</Text>
+//       </BaseButton>
+//       <BaseButton style={{ alignItems: 'center', padding: 3, justifyContent: 'center' }} onPress={() => { navigation.navigate('Upload') }}>
+//         <Feather name='plus-square' size={35} color={'#383838'}></Feather>
+//       </BaseButton>
+//       <View>
+//         <BaseButton style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Profile') }}>
+//           <MaterialCommunityIcons name='account-circle-outline' size={25} color={'#383838'}></MaterialCommunityIcons>
+//           <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: 'black' }}>Profile</Text>
+//         </BaseButton>
+//       </View>
+//     </View>
+//   </View>
+// )
+
 const Footer = ({ navigation }) => (
-  <View style={{ flexDirection: 'column' }}>
-    <View style={{ marginTop: -74, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-      <BaseButton style={{ backgroundColor: '#7D53F5', width: 55, height: 55, borderRadius: 100, alignItems: 'center', justifyContent: 'center', margin: 10, marginRight: 20 }} onPress={() => { navigation.navigate('Notifikasi') }}>
-        <Ionicons name='notifications-outline' size={30} color={'#FFF'}></Ionicons>
-      </BaseButton>
-    </View>
-    <View style={{ backgroundColor: '#FFF', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', borderTopColor: '#D9D9D9', borderTopWidth: .8, paddingHorizontal: 10, paddingVertical: 4 }}>
-      <BaseButton style={{ alignItems: 'center', justifyContent: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Home') }}>
+  <View style={{ backgroundColor: '#FFF', flexDirection: 'row', justifyContent: 'space-around', alignItems:'center', borderTopColor: '#D9D9D9', borderTopWidth: .8, paddingHorizontal: 10, paddingVertical:4 }}>
+      <BaseButton style={{ alignItems: 'center', justifyContent: 'center', justifyContent: 'space-around' }} onPress={() => { navigation.navigate('Home') }}>
         <Image style={{ width: 25, height: 25 }} source={require('../assets/icons/home_1.png')}></Image>
-        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: '#383838' }}>Home</Text>
+        <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: '#383838' }}>Home</Text>
       </BaseButton>
-      <BaseButton style={{ alignItems: 'center', padding: 3, justifyContent: 'center' }} onPress={() => { navigation.navigate('Upload') }}>
-        <Feather name='plus-square' size={35} color={'#383838'}></Feather>
-      </BaseButton>
+      <View style={{ backgroundColor: '#FFF', borderRadius: 50, marginTop: - 20, padding: 3 }}>
+        <BaseButton>
+          <View style={{ backgroundColor: '#7D53F5', borderRadius: 50, padding: 10 }}>
+            <Feather name="plus-square" size={29} color='#FFF'></Feather>
+          </View>
+        </BaseButton>
+      </View>
       <View>
         <BaseButton style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Profile') }}>
-          <MaterialCommunityIcons name='account-circle-outline' size={26} color={'#383838'} style={{ marginBottom: -1 }}></MaterialCommunityIcons>
-          <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: 'black' }}>Profile</Text>
+          <MaterialCommunityIcons name='account-circle-outline' size={25} color={'#383838'}></MaterialCommunityIcons>
+          <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: 'black' }}>Profile</Text>
         </BaseButton>
       </View>
     </View>
-  </View>
 )
 
 const TextHome = () => (
-  <View style={{ marginHorizontal: 16, marginBottom: 16, marginTop:10 }}>
+  <View style={{ marginHorizontal: 16, marginBottom: 16, marginTop: 10 }}>
     <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 28, color: 'black', marginBottom: -12 }}>Temukan Pekerjaan</Text>
     <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 28, color: 'black' }}>yang kamu inginkan</Text>
     <Text style={{ fontFamily: 'Poppins-Light', fontSize: 14, color: 'black' }}>Menjadi salah satu bagian dari perusahaan</Text>

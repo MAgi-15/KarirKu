@@ -1,4 +1,4 @@
-import { Text, View, Image, Dimensions, AsyncStorage, Alert } from 'react-native'
+import { Text, View, Image, Dimensions, AsyncStorage, Alert, StatusBar } from 'react-native'
 import React, { Component, useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -102,6 +102,7 @@ export class NextUpload1 extends Component {
     console.log(Kategori, Gambar, Judul, DeskripsiPerusahaan, NamaPekerjaan, Kualifikasi, KelengkapanBerkas, CaraDaftar)
     return (
         <View style={{ backgroundColor:'#FFF', flex:1 }}>
+            <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
             <Header navigation={this.props.navigation}></Header>
             <ScrollView>
                 <Form data_kirim1={data_kirim1} KategoriPost={(kategori)=>{this.Kategori(kategori)}} GambarPost={(gambar)=>{this.Gambar(gambar)}} JudulPost={(judul)=>{this.Judul(judul)}}

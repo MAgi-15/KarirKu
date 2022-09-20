@@ -251,12 +251,12 @@ export class EditPostingan extends Component {
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:20, PaddingBottom:10, marginBottom:5, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
-        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:15 }} onPress={()=>{navigation.navigate('Profile')}}>
-            <Ionicons name='arrow-back' size={30} color={'black'} ></Ionicons>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingVertical:12, PaddingBottom:10, marginBottom:5, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:1 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30 }} onPress={()=>{navigation.navigate('Profile')}}>
+            <Ionicons name='arrow-back' size={24} color={'black'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:20, color:'black', paddingBottom:15 }}>Edit Post</Text>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:20, color:'black' }}>Edit Post</Text>
         </View>
         <View style={{ width:30 }}></View>
     </View>

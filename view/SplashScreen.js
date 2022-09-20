@@ -1,4 +1,4 @@
-import { Text, View, Image, StatusBar, AsyncStorage } from 'react-native'
+import { Text, View, Image, StatusBar, AsyncStorage, Dimensions } from 'react-native'
 import React, { Component } from 'react'
 import { BaseButton } from 'react-native-gesture-handler'
 import { fcmService } from '../src/components/FCMService'
@@ -63,7 +63,7 @@ export class SplashScreen extends Component {
   render() {
     return (
       <View>
-        <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
+        <StatusBar backgroundColor={'#000'} barStyle='light-content'></StatusBar>
         <Gambar navigation={this.props.navigation}></Gambar>
       </View>
     )
@@ -72,16 +72,16 @@ export class SplashScreen extends Component {
 
 const Gambar = ({ navigation }) => (
   <View>
-    <Image source={require('../assets/images/unsplash_2.png')} style={{ width: 420, height: 812, position: 'absolute' }}></Image>
-    <View style={{ paddingLeft: 40, paddingTop: 40, marginBottom: 420 }}>
-      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 34, color: '#511AEF' }}>KarirKu</Text>
-      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 34, color: '#FFFFFF' }}>Temukan</Text>
-      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 34, color: '#511AEF' }}>Pekerjaanmu</Text>
-      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 34, color: '#FFFFFF' }}>dengan Mudah</Text>
+    <Image source={require('../assets/images/unsplash_2.png')} style={{ width: Dimensions.get('screen').width, height:  Dimensions.get('screen').height, position: 'absolute' }}></Image>
+    <View style={{ paddingLeft: 40, paddingTop: 50, marginBottom: 380 }}>
+      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 30, color: '#511AEF' }}>KarirKu</Text>
+      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 30, color: '#FFFFFF' }}>Temukan</Text>
+      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 30, color: '#511AEF' }}>Pekerjaanmu</Text>
+      <Text style={{ fontFamily: 'Montserrat-Bold', fontSize: 30, color: '#FFFFFF' }}>dengan Mudah</Text>
     </View>
-    <BaseButton style={{ alignItems: 'center', marginBottom: 20 }} onPress={() => { navigation.navigate('Login') }}>
-      <View style={{ backgroundColor: '#511AEF', borderRadius:8, height: 45, width: 200, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: 'white' }}>Login</Text>
+    <BaseButton style={{ alignItems: 'center', justifyContent:'center', marginBottom: 20 }} onPress={() => { navigation.navigate('Login') }}>
+      <View style={{ backgroundColor: '#511AEF', borderRadius:8, paddingVertical:8, paddingHorizontal:80, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+        <Text style={{ fontFamily: 'Poppins-Medium', fontSize: 16, color: 'white' }}>Login</Text>
       </View>
     </BaseButton>
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>

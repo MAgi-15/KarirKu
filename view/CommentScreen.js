@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { BaseButton, ScrollView, TextInput } from 'react-native-gesture-handler'
 import axios from 'axios'
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
+import Constant from '../Componen/Constant'
 
 export class CommentScreen extends Component {
   constructor(props) {
@@ -132,12 +133,12 @@ export class CommentScreen extends Component {
 }
 
 const Header = ({ navigation }) => (
-  <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingTop: 12, flexDirection: 'row', alignItems: 'center', elevation: 2, borderBottomColor: '#D9D9D9', borderBottomWidth: 0.5 }}>
-    <BaseButton style={{ justifyContent: 'flex-start', width: 30, paddingBottom: 12 }} onPress={() => { navigation.navigate('Home') }}>
+  <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', elevation: 1, borderBottomColor: '#D9D9D9', borderBottomWidth: 0.5 }}>
+    <BaseButton style={{ justifyContent: 'flex-start', width: 30 }} onPress={() => { navigation.navigate('Home') }}>
       <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
     </BaseButton>
     <View style={{ alignItems: 'center', flex: 1 }}>
-      <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16, color: '#383838', paddingBottom: 12 }}>Komentar</Text>
+      <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 16, color: '#383838' }}>Komentar</Text>
     </View>
     <View style={{ width: 30 }}></View>
   </View>

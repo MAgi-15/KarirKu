@@ -213,12 +213,12 @@ export class Profile extends Component {
 }
 
 const Header = ({ navigation }) => (
-  <View style={{ backgroundColor: '#FFF', paddingLeft: 20, paddingRight: 25, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', elevation: 2, borderBottomColor: '#D8D8D8', borderBottomWidth: .8 }}>
+  <View style={{ backgroundColor: '#FFF', paddingHorizontal:20, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', elevation: 1, borderBottomColor: '#D8D8D8', borderBottomWidth: .8 }}>
     <BaseButton onPress={() => { navigation.navigate('Home') }}>
       <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
     </BaseButton>
     <BaseButton onPress={() => { navigation.navigate('SettingProfile') }}>
-      <Ionicons name='settings-outline' size={24} color={'#383838'} ></Ionicons>
+      <Ionicons name='settings-outline' size={22} color={'#383838'} ></Ionicons>
     </BaseButton>
   </View>
 )
@@ -229,12 +229,16 @@ const Footer = ({ navigation }) => (
         <Image style={{ width:25, height:25 }} source={require('../assets/icons/home_2.png')}></Image>
         <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: '#383838' }}>Home</Text>
       </BaseButton>
-      <BaseButton style={{ alignItems: 'center', padding: 3, justifyContent: 'center' }} onPress={() => { navigation.navigate('Upload') }}>
-        <Feather name='plus-square' size={35} color={'#383838'}></Feather>
-      </BaseButton>
+      <View style={{ backgroundColor: '#FFF', borderRadius: 50, marginTop: - 20, padding: 3 }}>
+        <BaseButton>
+          <View style={{ backgroundColor: '#7D53F5', borderRadius: 50, padding: 10 }}>
+            <Feather name="plus-square" size={29} color='#FFF'></Feather>
+          </View>
+        </BaseButton>
+      </View>
       <View>
         <BaseButton style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Profile') }}>
-          <MaterialCommunityIcons name='account-circle' size={26} color={'#383838'} style={{ marginBottom: -1 }}></MaterialCommunityIcons>
+          <MaterialCommunityIcons name='account-circle' size={26} color={'#383838'}></MaterialCommunityIcons>
           <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: 'black' }}>Profile</Text>
         </BaseButton>
       </View>

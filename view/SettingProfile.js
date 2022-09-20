@@ -27,6 +27,7 @@ export class SettingProfile extends Component {
   render() {
     return (
       <View style={{  }}>
+        <StatusBar backgroundColor={'#fff'} barStyle='dark-content'></StatusBar>
         <Header navigation={this.props.navigation}></Header>
         <PhotoProfile Username={this.state.Username}></PhotoProfile>
         <Menu navigation={this.props.navigation}></Menu>
@@ -37,12 +38,12 @@ export class SettingProfile extends Component {
 }
 
 const Header = ({navigation})=> (
-    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingTop:12, flexDirection:'row', alignItems:'center', elevation:2, borderBottomColor:'#D9D9D9', borderBottomWidth:.5 }}>
-        <BaseButton style={{ justifyContent:'flex-start', width:30, paddingBottom:12 }} onPress={()=>{navigation.navigate('Profile')}}>
+    <View style={{ backgroundColor:'#FFF', paddingHorizontal:20, paddingVertical:12, flexDirection:'row', alignItems:'center', elevation:1, borderBottomColor:'#D9D9D9', borderBottomWidth:.5 }}>
+        <BaseButton style={{ justifyContent:'flex-start', width:30 }} onPress={()=>{navigation.navigate('Profile')}}>
             <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
         </BaseButton>
         <View style={{ alignItems:'center', flex:1 }}>
-            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'#383838', paddingBottom:12 }}>Setting</Text>
+            <Text style={{ fontFamily:'Poppins-SemiBold', fontSize:16, color:'#383838' }}>Setting</Text>
         </View>
         <View style={{ width:30 }}></View>
     </View>

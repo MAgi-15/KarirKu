@@ -41,6 +41,7 @@ export class Login extends Component {
       method: 'POST',
       url: Constant.api_url + 'api/user/login',
       data: PostData,
+      timeout: 5000
     })
       .then(async back => {
         let loginUser = back.data;
@@ -66,6 +67,9 @@ export class Login extends Component {
         }
       })
       .catch(error => {
+        if (error.response) {
+          console.log(JSON.stringify(error.response, null, 2))
+        }
         console.log('error', JSON.stringify(error));
       });
   };
@@ -102,10 +106,10 @@ export class Login extends Component {
 }
 
 const Header = ({ navigation }) => (
-  <View style={{ paddingHorizontal: 20, paddingTop: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center', paddingVertical: 10 }}>
+  <View style={{ backgroundColor:'#fff', paddingHorizontal: 20, paddingVertical:16, flexDirection: 'row', alignItems: 'center', paddingVertical: 10 }}>
     <BaseButton style={{ justifyContent: 'flex-start', width: 30 }}
       onPress={() => { navigation.navigate('SplashScreen') }}>
-      <Ionicons name="arrow-back" size={30} color={'black'}></Ionicons>
+      <Ionicons name="arrow-back" size={24} color={'#383838'}></Ionicons>
     </BaseButton>
   </View>
 );
@@ -119,11 +123,11 @@ const Form = ({ navigation, loginUser, Email, Password, email, pass }) => (
     <View
       style={{ padding: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
       <View style={{ marginRight: 10 }}>
-        <MaterialCommunityIcons name="email-outline" size={27} color={'#797979'}></MaterialCommunityIcons>
+        <MaterialCommunityIcons name="email-outline" size={24} color={'#797979'}></MaterialCommunityIcons>
       </View>
       <View>
         <TextInput value={email} placeholder={'Email'} onChangeText={email => { Email(email) }}
-          style={{ fontFamily: 'Poppins-Light', fontSize: 16, color: '#696969', borderBottomWidth: 1, borderColor: '#B5B5B5', width: 280, paddingBottom: 0 }}></TextInput>
+          style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: '#383838', borderBottomWidth: 1, borderColor: '#B5B5B5', width: 280, paddingBottom: 0 }}></TextInput>
       </View>
     </View>
     <View style={{ padding: 20, flexDirection: 'row', alignItems: 'center', marginBottom: 90 }}>
@@ -133,14 +137,14 @@ const Form = ({ navigation, loginUser, Email, Password, email, pass }) => (
       <View>
         <TextInput
           onChangeText={pass => { Password(pass) }} value={pass} secureTextEntry
-          style={{ fontFamily: 'Poppins-Light', fontSize: 16, color: '#696969', borderBottomWidth: 1, borderColor: '#B5B5B5', width: 280, paddingBottom: 0 }}
+          style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: '#383838', borderBottomWidth: 1, borderColor: '#B5B5B5', width: 280, paddingBottom: 0 }}
           placeholder={'Password'}></TextInput>
       </View>
     </View>
     <BaseButton style={{ alignItems: 'center', marginBottom: 20 }}
       onPress={() => { loginUser() }}>
-      <View style={{ backgroundColor: '#511AEF', height: 45, width: 200, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', borderRadius: 8 }}>
-        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 16, color: 'white' }}>Login</Text>
+      <View style={{ backgroundColor: '#511AEF', paddingVertical: 8, paddingHorizontal: 80, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', borderRadius: 8 }}>
+        <Text style={{ fontFamily: 'Poppins-Medium', fontSize: 16, color: 'white' }}>Login</Text>
       </View>
     </BaseButton>
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>

@@ -224,7 +224,7 @@ export class ProfileSimpan extends Component {
         <ScrollView>
           <PhotoProfile navigation={this.props.navigation} Username={this.state.Username}></PhotoProfile>
           {this.state.listSimpanPostingan.map((item, index) => {
-            console.log('AAAAAAAAAAAAA ',item, index)
+            console.log('AAAAAAAAAAAAA ', item, index)
             return <Postingan data={item} key={index} SimpanPost={this.state.SimpanPost} likePost={this.state.likePost} likePostingan={(like) => { this.Like(like) }} simpanPostingan={(simpan) => { this.Simpan(simpan) }} navigation={this.props.navigation}></Postingan>
           })}
         </ScrollView>
@@ -235,36 +235,40 @@ export class ProfileSimpan extends Component {
 }
 
 const Header = ({ navigation }) => (
-  <View style={{ backgroundColor: '#FFF', paddingLeft: 20, paddingRight: 25, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', elevation: 2, borderBottomColor: '#D8D8D8', borderBottomWidth: .8 }}>
+  <View style={{ backgroundColor: '#FFF', paddingHorizontal: 20, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', elevation: 1, borderBottomColor: '#D8D8D8', borderBottomWidth: .8 }}>
     <BaseButton onPress={() => { navigation.navigate('Home') }}>
       <Ionicons name='arrow-back' size={24} color={'#383838'} ></Ionicons>
     </BaseButton>
     <BaseButton onPress={() => { navigation.navigate('SettingProfile') }}>
-      <Ionicons name='settings-outline' size={24} color={'#383838'} ></Ionicons>
+      <Ionicons name='settings-outline' size={22} color={'#383838'} ></Ionicons>
     </BaseButton>
   </View>
 )
 
 const Footer = ({ navigation }) => (
-  <View style={{ backgroundColor: '#FFF', flexDirection: 'row', justifyContent: 'space-around', alignItems:'center', borderTopColor: '#D9D9D9', borderTopWidth: .8, paddingHorizontal: 10, paddingVertical:4 }}>
-      <BaseButton style={{ alignItems: 'center', justifyContent: 'center', justifyContent: 'space-around' }} onPress={() => { navigation.navigate('Home') }}>
-        <Image style={{ width:25, height:25 }} source={require('../assets/icons/home_2.png')}></Image>
-        <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: '#383838' }}>Home</Text>
+  <View style={{ backgroundColor: '#FFF', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', borderTopColor: '#D9D9D9', borderTopWidth: .8, paddingHorizontal: 10, paddingVertical: 4 }}>
+    <BaseButton style={{ alignItems: 'center', justifyContent: 'center', justifyContent: 'space-around' }} onPress={() => { navigation.navigate('Home') }}>
+      <Image style={{ width: 25, height: 25 }} source={require('../assets/icons/home_2.png')}></Image>
+      <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: '#383838' }}>Home</Text>
+    </BaseButton>
+    <View style={{ backgroundColor: '#FFF', borderRadius: 50, marginTop: - 20, padding: 3 }}>
+      <BaseButton>
+        <View style={{ backgroundColor: '#7D53F5', borderRadius: 50, padding: 10 }}>
+          <Feather name="plus-square" size={29} color='#FFF'></Feather>
+        </View>
       </BaseButton>
-      <BaseButton style={{ alignItems: 'center', padding: 3, justifyContent: 'center' }} onPress={() => { navigation.navigate('Upload') }}>
-        <Feather name='plus-square' size={35} color={'#383838'}></Feather>
-      </BaseButton>
-      <View>
-        <BaseButton style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Profile') }}>
-          <MaterialCommunityIcons name='account-circle' size={26} color={'#383838'} style={{ marginBottom: -1 }}></MaterialCommunityIcons>
-          <Text style={{ fontFamily:'Poppins-Regular', fontSize:11, color: 'black' }}>Profile</Text>
-        </BaseButton>
-      </View>
     </View>
+    <View>
+      <BaseButton style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('Profile') }}>
+        <MaterialCommunityIcons name='account-circle' size={26} color={'#383838'}></MaterialCommunityIcons>
+        <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 11, color: 'black' }}>Profile</Text>
+      </BaseButton>
+    </View>
+  </View>
 )
 
 const PhotoProfile = ({ navigation, Username }) => (
-  <View style={{ marginTop: 24, paddingHorizontal: 20, marginBottom:16 }}>
+  <View style={{ marginTop: 24, paddingHorizontal: 20, marginBottom: 16 }}>
     <View style={{ paddingHorizontal: 10 }}>
       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <Image style={{ marginBottom: 15, flexDirection: 'row' }} source={require('../assets/images/photo_profile.png')}></Image>
@@ -272,8 +276,8 @@ const PhotoProfile = ({ navigation, Username }) => (
       </View>
     </View>
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-    <BaseButton style={{ alignItems: 'center', marginBottom: 20 }} onPress={() => { navigation.navigate('EditProfile') }}>
-        <View style={{ backgroundColor: '#FFF', borderColor: '#D8D8D8', borderWidth: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 8, paddingVertical:2 , paddingHorizontal:130}}>
+      <BaseButton style={{ alignItems: 'center', marginBottom: 20 }} onPress={() => { navigation.navigate('EditProfile') }}>
+        <View style={{ backgroundColor: '#FFF', borderColor: '#D8D8D8', borderWidth: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 8, paddingVertical: 2, paddingHorizontal: 130 }}>
           <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 14, color: 'black' }}>Edit profile</Text>
         </View>
       </BaseButton>
@@ -282,7 +286,7 @@ const PhotoProfile = ({ navigation, Username }) => (
           <BaseButton onPress={() => { navigation.navigate('Profile') }}>
             <MaterialCommunityIcons name='folder-upload-outline' size={26} color={'#383838'} style={{}} ></MaterialCommunityIcons>
           </BaseButton>
-          <View style={{ borderColor: '#D8D8D8', borderWidth: .6, height:32 }}></View>
+          <View style={{ borderColor: '#D8D8D8', borderWidth: .6, height: 32 }}></View>
           <BaseButton onPress={() => { navigation.navigate('ProfileSimpan') }}>
             <Ionicons name='bookmark' size={23} color={'#383838'} style={{}} ></Ionicons>
           </BaseButton>
@@ -311,12 +315,12 @@ const Postingan = ({ navigation, data, likePostingan, simpanPostingan, likePost,
     }
   })
 
-  if (data.id_postingan===10) {
+  if (data.id_postingan === 10) {
     console.log('BBBBBBBBBBBBBBB ', data.jumlah_like)
   }
   return (
-    <View style={{ paddingHorizontal: 16, paddingBottom:8 }}>
-      <View style={{ flexDirection: "row", backgroundColor: '#FFF', padding: 8, elevation: 2, borderRadius: 8, marginBottom:5 }}>
+    <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
+      <View style={{ flexDirection: "row", backgroundColor: '#FFF', padding: 8, elevation: 2, borderRadius: 8, marginBottom: 5 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image style={{ width: 100, height: 100, margin: 10, marginRight: 20, borderRadius: 8 }} source={{ uri: Constant.api_url + data.gambar }}></Image>
           <View style={{ flexDirection: 'column' }}>
